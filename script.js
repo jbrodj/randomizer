@@ -17,6 +17,10 @@ const resultSection = document.getElementById('resultSection')
 
 const resetButton = document.getElementById('resetButton')
 
+const div1 = document.getElementById('container1')
+const div2 = document.getElementById('container2')
+const div3 = document.getElementById('container3')
+
 // Store existing input value for the number of players text field.
 let numPlayers = parseInt(mainInput.value)
 
@@ -37,8 +41,10 @@ function submitMainForm(event) {
     event.preventDefault
     console.log(numPlayers)
 // Hide first form
+    div1.classList.add('inactive')
     mainForm.classList.add('inactive')
     mainButton.classList.add('inactive')
+    div2.classList.remove('inactive')
     nameButton.classList.remove('inactive')
 // Populate empty array with a number of items = the numPlayers value
     numArray = []
@@ -59,6 +65,7 @@ function generateNamesForm() {
         const inputDiv = document.createElement('div')
         input2.appendChild(inputDiv)
         inputDiv.setAttribute('class', 'inputDiv')
+        inputDiv.setAttribute('class', 'altColor')
         const label = document.createElement('label')
         label.innerText = string
         label.setAttribute('for', string)
@@ -123,6 +130,7 @@ function printResults() {
 
     numberizer.forEach(function(item) {
         const listItem = document.createElement('li')
+        listItem.classList.add('altColor')
         listItem.innerText = item
         resultSection.append(listItem)
 

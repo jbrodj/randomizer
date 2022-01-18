@@ -9,7 +9,7 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
 h1, h2, ol, li, p, input, form {
-    /* margin: 0; */
+    margin: 0;
     padding: 0;
 }
 
@@ -17,8 +17,20 @@ html {
     font-size: 20px;
 }
 
+h1 {
+    color: rgb(177, 14, 14);
+}
+
+main, button {
+    color: rgb(236, 225, 210);
+}
+
 .inactive {
     display: none;
+}
+
+div + .inactive {
+    display: inline-block;
 }
 
 header {
@@ -28,50 +40,86 @@ header {
 
 input {
     margin: 0.5rem;
+    background-color: rgb(224, 206, 182);
 }
 
 li {
     margin: 0.5rem;
 }
 
+button {
+    padding: 0.25rem 0.5rem;
+    background-color: rgb(149, 75, 75);
+    border: 0.1rem solid rgb(124, 40, 40);
+    border-radius: 0.5rem;
+}
+
+button:hover {
+    border: 0.1rem solid burlywood;
+}
 
 .wrapper {
     width: 60%;
     height: 100%;
     margin: 0 auto;
-    background-color: bisque;
+    border-radius: 1rem;
+    border: 0.5rem solid rgb(118, 170, 144);
+    background-color: rgb(50, 110, 80);
     display: flex;
     justify-content: center;
-    /* align-items: center; */
+    align-items: center;
 }
 
 header .wrapper {
     display: flex;
     align-items: center;
+    background: none;
+    border: none;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .mainWrapper {
+    flex-direction: column;
+    margin: 0 0 3rem 0;
     padding: 2rem;
     position: relative;
-    height: calc(100vh - 18rem);
 }
 
 .contentContainer {
-    position: absolute;
-    margin-top: 4rem;
-    padding: 2rem;
-    height: 8rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    position: relative;
+}
+
+.mainWrapper h2 {
+    position: absolute;
+    top: 4rem;
+    left: 0 auto;
+    right: 0 auto;
+}
+
+form, ol {
+    margin: 6rem 0 1.5rem 0;
+}
+
+.mainForm {
+    margin-top: 8rem;
 }
 
 .input1 input {
     width: 3rem;
 }
 
-.mainSubmit, .nameSubmit {
-    position: absolute;
-    bottom: -2rem;
+.altColor:nth-of-type(2n + 1) {
+    background: rgb(72, 128, 100);
+    border-radius: 0.25rem;
 }

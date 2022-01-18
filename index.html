@@ -15,8 +15,8 @@
     </header>
     <main>
         <div class="wrapper mainWrapper">
-            <h2>Let's generate a random number for each player</h2>
-            <div class="contentContainer">
+            <h2>Let's put players in a random order!</h2>
+            <div class="contentContainer" id="container1">
                 <form class="mainForm" id="mainForm">
                     <div class="inputContainer input1 active" id="input1">
                         <label for="number" name="number">How many people are playing?</label>
@@ -25,15 +25,14 @@
                 </form>
                 <button class="mainSubmit" id="mainSubmit">Go!</button>
             </div>
-            <div class="contentContainer">
-
+            <div class="contentContainer inactive" id="container2">
                 <form class="nameForm" id="nameForm">
                     <div class="inputContainer input2" id="input2">
                     </div>
                 </form>
                 <button class="nameSubmit inactive" id="nameSubmit">Go!</button>
             </div>
-            <div class="contentContainer">
+            <div class="contentContainer" id="container3">
                 <ol class="resultSection inactive" id="resultSection"></ol>
             </div>
         </div>
