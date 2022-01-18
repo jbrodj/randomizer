@@ -7,3 +7,71 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 *, *:before, *:after {box-sizing: inherit}
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
+
+h1, h2, ol, li, p, input, form {
+    /* margin: 0; */
+    padding: 0;
+}
+
+html {
+    font-size: 20px;
+}
+
+.inactive {
+    display: none;
+}
+
+header {
+    height: 8rem;
+
+}
+
+input {
+    margin: 0.5rem;
+}
+
+li {
+    margin: 0.5rem;
+}
+
+
+.wrapper {
+    width: 60%;
+    height: 100%;
+    margin: 0 auto;
+    background-color: bisque;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+header .wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.mainWrapper {
+    padding: 2rem;
+    position: relative;
+    height: calc(100vh - 18rem);
+}
+
+.contentContainer {
+    position: absolute;
+    margin-top: 4rem;
+    padding: 2rem;
+    height: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.input1 input {
+    width: 3rem;
+}
+
+.mainSubmit, .nameSubmit {
+    position: absolute;
+    bottom: -2rem;
+}

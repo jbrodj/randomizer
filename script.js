@@ -9,13 +9,19 @@ const mainInput = document.getElementById('number')
 
 const mainSubmit = document.getElementsByClassName('mainSubmit')
 
-const mainButton = document.querySelector('button')
+const mainButton = document.getElementById('mainSubmit')
 
+const nameButton = document.getElementById('nameSubmit')
+
+const resultSection = document.getElementById('resultSection')
+
+const resetButton = document.getElementById('resetButton')
 
 // Store existing input value for the number of players text field.
 let numPlayers = parseInt(mainInput.value)
 
 let numArray = []
+let nameArray = []
 
 // Listen for change on number of players input
 mainInput.addEventListener('change', assignNum)
@@ -30,48 +36,111 @@ mainButton.addEventListener('click', submitMainForm)
 function submitMainForm(event) {
     event.preventDefault
     console.log(numPlayers)
-
+// Hide first form
+    mainForm.classList.add('inactive')
+    mainButton.classList.add('inactive')
+    nameButton.classList.remove('inactive')
 // Populate empty array with a number of items = the numPlayers value
     numArray = []
     for (let i = 1; i <= numPlayers; i++) {
-        numArray.push(`Player ${i}`)
+        numArray.push(`Player${i}`)
     }
-    console.log(numArray)
-
 // Call fn to move on to the next form
     generateNamesForm()
 }
 
+// After the initial form submit, we run:
 function generateNamesForm() {
-    // Update prompt heading
-    document.querySelector('h2').innerText = `What are their names?`;
-
-    
+    // Update prompt heading for next step.
+    document.querySelector('h2').innerText = `Let's gather all the names`;
+    // Iterate through number array and create input/label inside a div for each array index and give them values/attributes. 
     numArray.forEach(function(element) {
         string = element.toString()
-        console.log(string)
+        const inputDiv = document.createElement('div')
+        input2.appendChild(inputDiv)
+        inputDiv.setAttribute('class', 'inputDiv')
         const label = document.createElement('label')
-        label.innerHTML = `for=2`
         label.innerText = string
+        label.setAttribute('for', string)
         const inp = document.createElement('input')
-        const para = document.createElement('p')
-        para.innerText = element
-        inp.innerHTML = `<input id={numArray[i] + 1} type="text" required placeholder=${string}>`
-        input2.appendChild(label)
-        input2.appendChild(inp)
+        inputDiv.appendChild(label)
+        inputDiv.appendChild(inp)
+        inp.setAttribute('class', 'nameInput')
+        inp.setAttribute('id', string)
+    })
+}
+
+
+nouveauArray = []
+// Listen for second form submit click.
+nameButton.addEventListener('click', submitNameForm)
+// When name form submits, call function & store values. 
+function submitNameForm(event) {
+        // Update prompt heading for next step.
+    document.querySelector('h2').innerText = `Here's the order!`;
+    nameArray = []
+    eachName = document.getElementsByClassName('nameInput')
+
+    nameArray.push(eachName)
+
+    console.log(nameArray)
+    console.log(nameArray[0][0].value)
+
+    console.log(nameArray[0].length)
+
+    for (i = 0; i < nameArray[0].length; i++) {
+        console.log(i)
+        nouveauArray.push(nameArray[0][i].value)
+    }
+    console.log(nouveauArray)
+
+    // Hide second form.
+    nameForm.classList.add('inactive')
+    nameButton.classList.add('inactive')
+
+    // Call the randomizer function. 
+    randomatron2000()
+}
+
+// Define final array to store randomized name order.
+const numberizer = []
+
+function randomatron2000() {
+    // Generate random number, add item at that index to numberizer array, and remove it from array of names.
+    while (nouveauArray.length > 0) {
+        rando = Math.floor(Math.random() * nouveauArray.length)
+        numberizer.push(nouveauArray[rando])
+        nouveauArray.splice(rando, 1)
+    }
+
+    // Call the print function
+    printResults()
+}
+
+// Send final results to the UL on the page, creating an li for each array index.
+function printResults() {
+    resultSection.classList.remove('inactive')
+
+    numberizer.forEach(function(item) {
+        const listItem = document.createElement('li')
+        listItem.innerText = item
+        resultSection.append(listItem)
 
     })
-
-    // console.log(document.getElementById('names'))
-    // const clone = document.getElementById('names');
-    // document.getElementById('input2').appendChild(clone)
-
-    // // Update form
-    // const container = document.getElementsByClassName('inputContainer')
-    // const para = document.createElement('p');
-    // para.textContent = 'helloooooooo';
-    // console.log(inputContainer, para.textContent)
-
-    // container.append(para)
-    
 }
+
+// Event Listener for reset button
+resetButton.addEventListener('click', formReset)
+
+function formReset() {
+    console.log('run')
+    // if (!mainForm) {
+        console.log('yes')
+        mainForm.classList.remove('inactive')
+        mainSubmit.classList.remove('inactive')
+    // }
+    nameForm.classList.add('inactive')
+    nameButton.classList.add('inactive')
+    resultSection.classList.add('inactive')
+}
+
