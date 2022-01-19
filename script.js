@@ -24,6 +24,7 @@ const div3 = document.getElementById('container3')
 // Store existing input value for the number of players text field.
 let numPlayers = parseInt(mainInput.value)
 
+// Declare arrays to store user data
 let numArray = []
 let nameArray = []
 
@@ -35,10 +36,11 @@ function assignNum(event) {
 }
 
 // Listen for submit button on main form. 
-mainButton.addEventListener('click', submitMainForm)
+mainForm.addEventListener('submit', submitMainForm)
+
 // When submit clicked, send numPlayers value and call next function. 
 function submitMainForm(event) {
-    event.preventDefault
+    event.preventDefault()
     console.log(numPlayers)
 // Hide first form
     div1.classList.add('inactive')
@@ -59,21 +61,26 @@ function submitMainForm(event) {
 function generateNamesForm() {
     // Update prompt heading for next step.
     document.querySelector('h2').innerText = `Let's gather all the names`;
-    // Iterate through number array and create input/label inside a div for each array index and give them values/attributes. 
+    // Iterate through number array and create input/label inside a div for each array index and give them values/attributes from element parameter. 
     numArray.forEach(function(element) {
         string = element.toString()
+        // Create & append div for styling the form containers
         const inputDiv = document.createElement('div')
         input2.appendChild(inputDiv)
         inputDiv.setAttribute('class', 'inputDiv')
         inputDiv.setAttribute('class', 'altColor')
+        // Create label elements and name using numArray to link each to corresponding input element
         const label = document.createElement('label')
         label.innerText = string
         label.setAttribute('for', string)
-        const inp = document.createElement('input')
         inputDiv.appendChild(label)
-        inputDiv.appendChild(inp)
-        inp.setAttribute('class', 'nameInput')
-        inp.setAttribute('id', string)
+        // Create & append input elements and 
+        const input = document.createElement('input')
+        input.setAttribute('class', 'nameInput')
+        input.setAttribute('id', string)
+        inputDiv.appendChild(input)
+        // Send Focus to first input
+        document.getElementById('Player1').focus()
     })
 }
 
@@ -83,6 +90,7 @@ nouveauArray = []
 nameButton.addEventListener('click', submitNameForm)
 // When name form submits, call function & store values. 
 function submitNameForm(event) {
+    event.preventDefault()
         // Update prompt heading for next step.
     document.querySelector('h2').innerText = `Here's the order!`;
     nameArray = []
