@@ -27,6 +27,7 @@ main, button {
 
 .inactive {
     display: none;
+    position: absolute;
 }
 
 div + .inactive {
@@ -44,22 +45,25 @@ input {
 }
 
 li {
-    margin: 0.5rem;
+    margin: 0.75rem;
 }
 
 button {
-    padding: 0.25rem 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.3rem 0.6rem;
     background-color: rgb(149, 75, 75);
-    border: 0.1rem solid rgb(124, 40, 40);
+    border: 0.2rem solid rgb(124, 40, 40);
     border-radius: 0.5rem;
+    font-family: inherit;
 }
 
 button:hover {
-    border: 0.1rem solid burlywood;
+    border: 0.2rem solid burlywood;
 }
 
 .wrapper {
     width: 60%;
+    max-width: 800px;
     height: 100%;
     margin: 0 auto;
     border-radius: 1rem;
@@ -85,7 +89,7 @@ main {
 }
 
 .mainWrapper {
-    flex-direction: column;
+    /* flex-direction: column; */
     margin: 0 0 3rem 0;
     padding: 2rem;
     position: relative;
@@ -98,24 +102,25 @@ main {
     align-items: center;
     flex-wrap: wrap;
     position: relative;
+    height: 100%;
 }
 
 .mainWrapper h2 {
     position: absolute;
-    top: 4rem;
+    top: 3rem;
     left: 0 auto;
     right: 0 auto;
 }
 
 form, ol {
-    margin: 6rem 0 1.5rem 0;
+    margin: 5rem 0 1.5rem 0;
 }
 
-.mainForm {
-    margin-top: 8rem;
+ol {
+    margin: 5rem 0 1rem 0;
 }
 
-.input1 input {
+.inputContainer1 input {
     width: 3rem;
 }
 
