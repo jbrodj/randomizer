@@ -76,7 +76,7 @@ function generateNamesForm() {
 
 nouveauArray = []
 // Listen for second form submit click.
-nameButton.addEventListener('click', submitNameForm)
+nameForm.addEventListener('submit', submitNameForm)
 // When name form submits, call function & store values. 
 function submitNameForm(event) {
     event.preventDefault()
