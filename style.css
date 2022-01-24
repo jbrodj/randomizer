@@ -39,6 +39,10 @@ header {
 
 }
 
+form {
+    text-align: center;
+}
+
 input {
     margin: 0.5rem;
     background-color: rgb(224, 206, 182);

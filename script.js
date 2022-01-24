@@ -1,3 +1,11 @@
+//============== PAGE CONTENT ELEMENT VARIABLES================
+
+// Elements from initial input form to select which game is being played
+const toggleForm = document.getElementById('toggleForm')
+const toggleDisplay = document.getElementById('toggleDisplay')
+const toggleButton = document.getElementById('toggleSubmit')
+const promptHeading = document.getElementById('promptHeading')
+
 // Elements from input form for gathering number of players
 const numForm = document.getElementById('numForm')
 // const inputContainer1 = document.getElementById('inputContainer1')
@@ -13,6 +21,48 @@ const nameButton = document.getElementById('nameSubmit')
 const resultSection = document.getElementById('resultSection')
 
 // const resetButton = document.getElementById('resetButton')
+
+
+
+// ================= USER CHOOSES WHICH GAME THEY'RE PLAYING =====================
+
+// Variable to store input value for the selected game
+let gameSelected = 'whiteElephant'
+
+// Listen for change on the game selection form
+toggleForm.addEventListener('change', setToggleSelect)
+
+// Set the gameSelect variable to user selection
+function setToggleSelect(event) {
+    gameSelected = event.target.value
+    if (gameSelected === 'secretSanta') {
+        toggleDisplay.textContent = 'Secret Santa'
+    } else {
+        toggleDisplay.textContent = 'White Elephant'
+    }
+}
+
+// Listen for submit of radio toggle form
+toggleForm.addEventListener('submit', submitToggleForm)
+
+// When submit clicked, hide toggle form, update heading text, check for which game is selected, and launch next step for that game
+function submitToggleForm(event) {
+    event.preventDefault()
+    toggleForm.classList.add('inactive')
+    toggleSubmit.classList.add('inactive')
+    promptHeading.innerText = `Let's put players in a random order!`
+
+    if (gameSelected === 'whiteElephant') {
+        // Display form for number of players
+        numForm.classList.remove('inactive')
+        numButton.classList.remove('inactive')
+        // Focus on input
+        numInput.focus()
+    }
+}
+
+
+// =================== WHITE ELEPHANT PROGRAM ====================
 
 // Variable to store input value for the number of players text field.
 let numPlayers = parseInt(numInput.value)
@@ -39,9 +89,10 @@ function submitNumForm(event) {
     for (let i = 1; i <= numPlayers; i++) {
         numArray.push(`Player${i}`)
     }
-    // Hide first form
+    // Hide number form, and display the names form
     numForm.classList.add('inactive')
     numButton.classList.add('inactive')
+    nameForm.classList.remove('inactive')
     nameButton.classList.remove('inactive')
     // Call fn to display the names form
     generateNamesForm()
@@ -68,11 +119,15 @@ function generateNamesForm() {
         const input = document.createElement('input')
         input.setAttribute('class', 'nameInput')
         input.setAttribute('id', string)
+        // input.setAttribute('required', 'required')
         inputDiv.appendChild(input)
         // Send Focus to first input
         document.getElementById('Player1').focus()
     })
 }
+
+
+
 
 nouveauArray = []
 // Listen for second form submit click.
@@ -130,6 +185,13 @@ function printResults() {
         resultSection.append(listItem)
     })
 }
+
+
+
+
+// =================== SECRET SANTA PROGRAM =======================
+
+
 
 // Event Listener for reset button
 // resetButton.addEventListener('click', formReset)

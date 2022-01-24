@@ -10,23 +10,36 @@
 <body>
     <header>
         <div class="wrapper">
-            <h1>Randomizer</h1>
+            <h1>Gift Exchange Game Randomizer</h1>
         </div>
     </header>
     <main>
         <div class="wrapper mainWrapper">
-            <h2>Let's put players in a random order!</h2>
+            <h2 id="promptHeading">Which game are you playing?</h2>
+            <div class="contentContainer" id="container0">
+
+                <form class="toggleForm" id="toggleForm">
+                    <div class="inputContainer radioContainer">
+                        <label for="randomRadio" class="sr-only">Randomizer</label>
+                        <input type="radio" id="randomRadio" name="toggleForm" value="whiteElephant" checked autofocus>
+                        <label for="secretRadio" class="sr-only">Secret Santa</label>
+                        <input type="radio" id="secretRadio" name="toggleForm" value="secretSanta">
+                    </div>
+                    <p id="toggleDisplay">White Elephant</p>
+                </form>
+                <button type="submit" form="toggleForm" id="toggleSubmit">Go!</button>
+            </div>
             <div class="contentContainer" id="container1">
-                <form class="numForm" id="numForm">
-                    <div class="inputContainer inputContainer1 active" id="inputContainer1">
+                <form class="numForm inactive" id="numForm">
+                    <div class="inputContainer inputContainer1" id="inputContainer1">
                         <label for="numInput" name="numInput">How many people are playing?</label>
                         <input type="number" id="numInput" min="1" pattern="[0-9*]" title="Number of players" inputmode="numeric" required autofocus>
                     </div>
                 </form>
-                <button type="submit" form="numForm" class="numSubmit" id="numSubmit">Go!</button>
+                <button type="submit" form="numForm" class="numSubmit inactive" id="numSubmit">Go!</button>
             </div>
             <div class="contentContainer" id="container2">
-                <form class="nameForm" id="nameForm">
+                <form class="nameForm inactive" id="nameForm">
                     <div class="inputContainer inputContainer2" id="inputContainer2">
                     </div>
                 </form>
