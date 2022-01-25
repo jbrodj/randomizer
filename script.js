@@ -52,17 +52,16 @@ function submitToggleForm(event) {
     toggleSubmit.classList.add('inactive')
     promptHeading.innerText = `Let's put players in a random order!`
 
-    if (gameSelected === 'whiteElephant') {
         // Display form for number of players
         numForm.classList.remove('inactive')
         numButton.classList.remove('inactive')
         // Focus on input
         numInput.focus()
-    }
+
 }
 
 
-// =================== WHITE ELEPHANT PROGRAM ====================
+// ================== MAIN PROGRAM SEQUENCE ====================
 
 // Variable to store input value for the number of players text field.
 let numPlayers = parseInt(numInput.value)
@@ -126,17 +125,14 @@ function generateNamesForm() {
     })
 }
 
-
-
-
+// Define array for storing name data from user inputs
 nouveauArray = []
 // Listen for second form submit click.
 nameForm.addEventListener('submit', submitNameForm)
-// When name form submits, call function & store values. 
+// When name form submits, call appropriate program function & store name values in new array. 
 function submitNameForm(event) {
     event.preventDefault()
-    // Update prompt heading for next step.
-    document.querySelector('h2').innerText = `Here's the order!`;
+
     // Array to store temporary name data
     nameArray = []
     // Variable to store the input elements in the names form 
@@ -154,9 +150,26 @@ function submitNameForm(event) {
     nameForm.classList.add('inactive')
     nameButton.classList.add('inactive')
 
-    // Call the randomizer function. 
-    randomatron2000()
+
+    if (gameSelected === 'whiteElephant') {
+        // Update prompt heading for next step.
+        promptHeading.innerText = `Here's the order!`;
+
+        // Call the randomizer function. 
+        randomatron2000()
+    }
+
+    if (gameSelected === 'secretSanta') {
+        // Update prompt heading for next step.
+        promptHeading.innerText = `Here are the pairings!`;
+
+        // Call the pairing function.
+        pairamatron2001()
+    }
 }
+
+
+// =================== WHITE ELEPHANT PROGRAM ====================
 
 // Define final array to store randomized name order.
 const randomOrder = []
@@ -187,10 +200,52 @@ function printResults() {
 }
 
 
-
-
 // =================== SECRET SANTA PROGRAM =======================
 
+// Define final array to store the pairings
+const secretPairs = []
+let newBuddy = []
+
+secretPairs.push('Steve', 'Mary', 'Ron', 'Dawn', 'Shevon', 'Cmon')
+console.log(secretPairs)
+
+
+for (let i = 0; i < secretPairs.length; i++) {
+
+    let othernames = []
+
+    othernames = secretPairs.splice(i)
+    console.log(othernames)
+
+    newBuddy.push([secretPairs[i], othernames])
+}
+console.log(newBuddy)
+
+// function pairamatron2001() {
+//     console.log('running')
+//     // console.log(nouveauArray)
+
+//     let player = nouveauArray[0]
+//     console.log(player)
+
+//     let otherPlayers = nouveauArray.splice(1)
+//     console.log(otherPlayers)
+
+//     let possiblePairs = []
+
+//     possiblePairs.push([player, [otherPlayers]])
+//     console.log(possiblePairs)
+
+
+    // nouveauArray.forEach(possiblePairs);
+
+    // function possiblePairs(player, index) {
+    //     let otherPlayers = nouveauArray.slice(nouveauArray[index], 1)
+    //     secretPairs.push([player, [otherPlayers]])
+    //     console.log(otherPlayers)
+    //     console.log(secretPairs)
+    // }
+// }
 
 
 // Event Listener for reset button
