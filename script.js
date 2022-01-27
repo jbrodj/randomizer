@@ -5,6 +5,7 @@ const toggleForm = document.getElementById('toggleForm')
 const toggleDisplay = document.getElementById('toggleDisplay')
 const toggleButton = document.getElementById('toggleSubmit')
 const promptHeading = document.getElementById('promptHeading')
+const defaultSelectRadio = document.getElementById('randomRadio')
 
 // Elements from input form for gathering number of players
 const numForm = document.getElementById('numForm')
@@ -26,8 +27,12 @@ const resultSection = document.getElementById('resultSection')
 
 // ================= USER CHOOSES WHICH GAME THEY'RE PLAYING =====================
 
+// When page loads or refreshes, reset html element to default selection - prevents radio selection display from sticking on refresh.
+defaultSelectRadio.checked=true
+
 // Variable to store input value for the selected game
 let gameSelected = 'whiteElephant'
+
 
 // Listen for change on the game selection form
 toggleForm.addEventListener('change', setToggleSelect)
@@ -139,9 +144,6 @@ function submitNameForm(event) {
     eachName = document.getElementsByClassName('nameInput')
     // Populate array with elements
     nameArray.push(eachName)
-    // console.log(nameArray)
-    // console.log(nameArray[0][0].value)
-    // console.log(nameArray[0].length)
     // Loop through the nameArray to populate a new array with the user data from the inputs. 
     for (i = 0; i < nameArray[0].length; i++) {
         nouveauArray.push(nameArray[0][i].value)

@@ -18,7 +18,15 @@ html {
 }
 
 h1 {
-    color: rgb(177, 14, 14);
+    font-size: 1.75rem;
+    text-align: center;
+    color: rgb(236, 225, 210);
+    margin: 0 1rem;
+}
+
+h2 {
+    font-size: 1.3rem;
+    font-weight: normal;
 }
 
 main, button {
@@ -36,7 +44,14 @@ div + .inactive {
 
 header {
     height: 8rem;
+    position: relative;
+}
 
+body {
+    /* Background image credit Erol Ahmed @erol (https://unsplash.com/photos/IHL-Jbawvvo) */
+    background-image: url(./Assets/erol-ahmed-IHL-Jbawvvo-unsplash.jpg);
+    background-position: center;
+    background-size: cover;
 }
 
 form {
@@ -45,7 +60,10 @@ form {
 
 input {
     margin: 0.5rem;
-    background-color: rgb(224, 206, 182);
+    padding-left: 0.25rem;
+    background-color: rgb(236, 225, 210);
+    border-radius: 0.125rem;
+    border: none;
 }
 
 li {
@@ -53,26 +71,57 @@ li {
 }
 
 button {
-    margin-bottom: 1rem;
     padding: 0.3rem 0.6rem;
     background-color: rgb(149, 75, 75);
-    border: 0.2rem solid rgb(124, 40, 40);
-    border-radius: 0.5rem;
+    border: 0.15rem solid rgb(124, 40, 40);
+    border-radius: 0.3rem;
     font-family: inherit;
 }
 
+input:focus {
+    outline: 0.075rem dotted burlywood;
+    background-color:rgb(224, 200, 167);
+}
+
 button:hover {
-    border: 0.2rem solid burlywood;
+    border: 0.15rem solid burlywood;
+}
+
+button:focus {
+    outline: 0.075rem dotted burlywood;
+}
+
+
+.resetButton {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0.125rem 0.35rem;
+}
+
+a {
+    color: inherit;
+    border: 0.075rem dotted transparent;
+}
+
+a:hover {
+    color: rgb(228, 122, 122);
+}
+
+a:focus {
+    border: 0.075rem dotted burlywood;
 }
 
 .wrapper {
     width: 60%;
-    max-width: 800px;
+    max-width: 700px;
     height: 100%;
     margin: 0 auto;
     border-radius: 1rem;
-    border: 0.5rem solid rgb(118, 170, 144);
-    background-color: rgb(50, 110, 80);
+    border: 0.5rem solid rgb(141, 168, 141);
+    background-color: rgb(43, 58, 47);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,7 +134,19 @@ header .wrapper {
     border: none;
 }
 
+.backgroundEffect {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(43, 58, 47);
+    opacity: 0.85;
+    z-index: -1;
+}
+
 main {
+    min-height: calc(100vh - 11rem);
+    padding: 4rem 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -93,10 +154,11 @@ main {
 }
 
 .mainWrapper {
-    /* flex-direction: column; */
-    margin: 0 0 3rem 0;
+    min-height: 300px;
     padding: 2rem;
     position: relative;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .contentContainer {
@@ -110,18 +172,23 @@ main {
 }
 
 .mainWrapper h2 {
-    position: absolute;
     top: 3rem;
     left: 0 auto;
     right: 0 auto;
+    text-align: center;
 }
 
 form, ol {
-    margin: 5rem 0 1.5rem 0;
+    margin: 3.5rem 0 1.25rem 0;
+    margin: 1.25rem 0 1.25rem 0;
 }
 
 ol {
-    margin: 5rem 0 1rem 0;
+    margin: 1.25rem 0 0rem 0;
+}
+
+label {
+    margin-left: 0.5rem;
 }
 
 .inputContainer1 input {
@@ -129,6 +196,43 @@ ol {
 }
 
 .altColor:nth-of-type(2n + 1) {
-    background: rgb(72, 128, 100);
+    background: rgba(138, 175, 148, 0.171);
     border-radius: 0.25rem;
+}
+
+footer {
+    position: relative;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 auto 0;
+    min-height: 3rem;
+    color: rgb(236, 225, 210);
+}
+
+@media (max-width: 800px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    .wrapper {
+        width: 80%;
+    }
+
+}
+
+@media (max-width: 550px) {
+    .wrapper {
+        width: 85%;
+    }
+    h1 {
+        font-size: 1.25rem;
+    }
+    h2 {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    main {
+        padding: 2rem 0;
+    }
 }
