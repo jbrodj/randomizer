@@ -8,17 +8,30 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
-h1, h2, ol, li, p, input, form {
+
+/* ======== NORMALIZE ======== */
+
+h1, h2, ol, ul, li, p, input, form {
     margin: 0;
     padding: 0;
 }
 
+li {
+    list-style: none;
+}
+
+
+/* ========= TYPOGRAPHY ========== */
+
 html {
     font-size: 20px;
+    font-family: 'Lato', sans-serif;
 }
 
 h1 {
+    font-family: 'Cormorant Garamond', serif;
     font-size: 1.75rem;
+    font-size: 2.25rem;
     text-align: center;
     color: rgb(236, 225, 210);
     margin: 0 1rem;
@@ -26,21 +39,16 @@ h1 {
 
 h2 {
     font-size: 1.3rem;
-    font-weight: normal;
+    font-weight: 400;
+    text-align: center;
 }
 
 main, button {
     color: rgb(236, 225, 210);
 }
 
-.inactive {
-    display: none;
-    position: absolute;
-}
 
-div + .inactive {
-    display: inline-block;
-}
+/* ======== GENERAL ======== */
 
 header {
     height: 8rem;
@@ -56,31 +64,59 @@ body {
 
 form {
     text-align: center;
+    margin: 1.25rem 0 1.25rem 0;
+}
+
+label {
+    margin-left: 0.5rem;
 }
 
 input {
-    margin: 0.5rem;
+    margin: 0 0.5rem;
     padding-left: 0.25rem;
     background-color: rgb(236, 225, 210);
-    border-radius: 0.125rem;
+    border-radius: 0.075rem;
     border: none;
 }
 
+input:focus {
+    outline: 0.075rem dotted burlywood;
+    background-color:rgb(224, 200, 167);
+}
+
+ul {
+    margin: 0 auto;
+}
+
+ol {
+    margin: 1.25rem 0 0 0;
+    counter-reset: section;
+}
+
+ol > li {
+    min-width: 10rem;
+}
+
+ol > li:before {
+    counter-increment: section;
+    content: counter(section)'.';
+    padding-right: 0.4rem;
+}
+
 li {
-    margin: 0.75rem;
+    margin: 0.5rem 0;
+    padding: 0 0.5rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
 }
 
 button {
     padding: 0.3rem 0.6rem;
     background-color: rgb(149, 75, 75);
     border: 0.15rem solid rgb(124, 40, 40);
-    border-radius: 0.3rem;
+    border-radius: 0.15rem;
     font-family: inherit;
-}
-
-input:focus {
-    outline: 0.075rem dotted burlywood;
-    background-color:rgb(224, 200, 167);
 }
 
 button:hover {
@@ -89,16 +125,6 @@ button:hover {
 
 button:focus {
     outline: 0.075rem dotted burlywood;
-}
-
-
-.resetButton {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    width: 1.75rem;
-    height: 1.75rem;
-    padding: 0.125rem 0.35rem;
 }
 
 a {
@@ -119,20 +145,21 @@ a:focus {
     max-width: 700px;
     height: 100%;
     margin: 0 auto;
-    border-radius: 1rem;
-    border: 0.5rem solid rgb(141, 168, 141);
-    background-color: rgb(43, 58, 47);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+
+/* ======== HEADER ======== */
+
 header .wrapper {
     display: flex;
     align-items: center;
-    background: none;
-    border: none;
 }
+
+
+/* ======== SEMI-TRANSPARENT BACKGROUND ========= */
 
 .backgroundEffect {
     position: absolute;
@@ -144,6 +171,14 @@ header .wrapper {
     z-index: -1;
 }
 
+.mainWrapper .backgroundEffect {
+    border: 0.25rem solid rgba(141, 168, 141, 0.5);
+    border-radius: 0.2rem;
+}
+
+
+/* ======== MAIN SECTION ======== */
+
 main {
     min-height: calc(100vh - 11rem);
     padding: 4rem 0;
@@ -154,51 +189,63 @@ main {
 }
 
 .mainWrapper {
-    min-height: 300px;
-    padding: 2rem;
+    min-height: 200px;
+    padding: 2.5rem 1.5rem;
     position: relative;
     flex-direction: column;
     justify-content: space-between;
+    justify-content: flex-end;
 }
 
-.contentContainer {
+.toggleForm {
+    margin-top: 0.4rem;
+}
+
+.radioContainer {
+    width: 5rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    position: relative;
-    height: 100%;
+    justify-content: space-evenly;
 }
 
-.mainWrapper h2 {
-    top: 3rem;
-    left: 0 auto;
-    right: 0 auto;
-    text-align: center;
-}
-
-form, ol {
-    margin: 3.5rem 0 1.25rem 0;
-    margin: 1.25rem 0 1.25rem 0;
-}
-
-ol {
-    margin: 1.25rem 0 0rem 0;
-}
-
-label {
-    margin-left: 0.5rem;
+.radioContainer > li {
+    margin: 0;
+    padding-top: 0;
 }
 
 .inputContainer1 input {
     width: 3rem;
 }
 
-.altColor:nth-of-type(2n + 1) {
-    background: rgba(138, 175, 148, 0.171);
-    border-radius: 0.25rem;
+.altColorLi > input {
+    width: 100%;
 }
+
+.altColorLi:nth-of-type(2n + 1) {
+    background: rgba(138, 175, 148, 0.171);
+    border-radius: 0.125rem;
+}
+
+.altColorLi:nth-of-type(2n) {
+    background: rgba(32, 41, 34, 0.4);
+    border-radius: 0.125rem;
+}
+
+.resetButton {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0.125rem 0.35rem;
+}
+
+.inactive {
+    display: none;
+    position: absolute;
+}
+
+
+/* ======== FOOTER ======== */
 
 footer {
     position: relative;
@@ -211,28 +258,41 @@ footer {
     color: rgb(236, 225, 210);
 }
 
+
+/* ====================== MEDIA QUERIES =========================== */
+
 @media (max-width: 800px) {
     h1 {
-        font-size: 1.5rem;
+        font-size: 2.25rem;
     }
     .wrapper {
         width: 80%;
     }
-
+    
 }
 
-@media (max-width: 550px) {
+@media (max-width: 650px) {
     .wrapper {
-        width: 85%;
+        width: 90%;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
     h1 {
-        font-size: 1.25rem;
+        font-size: 1.75rem;
     }
     h2 {
-        font-size: 1rem;
-        font-weight: bold;
+        font-size: 1.2rem;
+        font-weight: 400;
+        margin-top: 0.5rem;
     }
     main {
         padding: 2rem 0;
+    }
+    label {
+        margin-bottom: 0.25rem;
+        display: inline-block;
+    }
+    .numForm input {
+        margin-top: 0.5rem;
     }
 }

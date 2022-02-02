@@ -9,13 +9,11 @@ const defaultSelectRadio = document.getElementById('randomRadio')
 
 // Elements from input form for gathering number of players
 const numForm = document.getElementById('numForm')
-// const inputContainer1 = document.getElementById('inputContainer1')
 const numInput = document.getElementById('numInput')
 const numButton = document.getElementById('numSubmit')
 
 // Elements from input form for gathering player names
 const nameForm = document.getElementById('nameForm')
-const inputContainer2 = document.getElementById('inputContainer2')
 const nameButton = document.getElementById('nameSubmit')
 
 // Elements for displaying final results
@@ -47,7 +45,7 @@ function setToggleSelect(event) {
     }
 }
 
-// Listen for submit of radio toggle form
+// Listen for submit of radio toggle form (container 0)
 toggleForm.addEventListener('submit', submitToggleForm)
 
 // When submit clicked, hide toggle form, update heading text, check for which game is selected, and launch next step for that game
@@ -56,12 +54,12 @@ function submitToggleForm(event) {
     toggleForm.classList.add('inactive')
     toggleSubmit.classList.add('inactive')
     promptHeading.innerText = `Let's put players in a random order!`
-
-        // Display form for number of players
-        numForm.classList.remove('inactive')
-        numButton.classList.remove('inactive')
-        // Focus on input
-        numInput.focus()
+    
+    // Display form for number of players (container 1)
+    numForm.classList.remove('inactive')
+    numButton.classList.remove('inactive')
+    // Focus on input
+    numInput.focus()
 
 }
 
@@ -96,6 +94,7 @@ function submitNumForm(event) {
     // Hide number form, and display the names form
     numForm.classList.add('inactive')
     numButton.classList.add('inactive')
+
     nameForm.classList.remove('inactive')
     nameButton.classList.remove('inactive')
     // Call fn to display the names form
@@ -110,21 +109,21 @@ function generateNamesForm() {
     numArray.forEach(function(element) {
         string = element.toString()
         // Create & append div for styling the form containers
-        const inputDiv = document.createElement('div')
-        inputContainer2.appendChild(inputDiv)
-        inputDiv.setAttribute('class', 'inputDiv')
-        inputDiv.setAttribute('class', 'altColor')
+        const inputLi = document.createElement('li')
+        inputContainer2.appendChild(inputLi)
+        inputLi.setAttribute('class', 'altColorLi')
         // Create label elements and name using numArray to link each to corresponding input element
         const label = document.createElement('label')
         label.innerText = string
         label.setAttribute('for', string)
-        inputDiv.appendChild(label)
+        inputLi.appendChild(label)
         // Create & append input elements and add their properties
         const input = document.createElement('input')
+        input.setAttribute('maxlength', '30')
         input.setAttribute('class', 'nameInput')
         input.setAttribute('id', string)
         // input.setAttribute('required', 'required')
-        inputDiv.appendChild(input)
+        inputLi.appendChild(input)
         // Send Focus to first input
         document.getElementById('Player1').focus()
     })
@@ -151,7 +150,6 @@ function submitNameForm(event) {
     // Hide names input form.
     nameForm.classList.add('inactive')
     nameButton.classList.add('inactive')
-
 
     if (gameSelected === 'whiteElephant') {
         // Update prompt heading for next step.
@@ -195,7 +193,7 @@ function printResults() {
     // Create and append the list items for each index. 
     randomOrder.forEach(function(item) {
         const listItem = document.createElement('li')
-        listItem.classList.add('altColor')
+        listItem.classList.add('altColorLi')
         listItem.innerText = item
         resultSection.append(listItem)
     })
