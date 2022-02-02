@@ -60,6 +60,7 @@ body {
     background-image: url(./Assets/erol-ahmed-IHL-Jbawvvo-unsplash.jpg);
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 form {
@@ -196,6 +197,7 @@ main {
     justify-content: space-between;
     justify-content: flex-end;
 }
+
 
 .toggleForm {
     margin-top: 0.4rem;
