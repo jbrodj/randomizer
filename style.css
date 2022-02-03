@@ -58,6 +58,7 @@ header {
 body {
     /* Background image credit Erol Ahmed @erol (https://unsplash.com/photos/IHL-Jbawvvo) */
     background-image: url(./Assets/erol-ahmed-IHL-Jbawvvo-unsplash.jpg);
+    background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -126,6 +127,11 @@ button:hover {
 
 button:focus {
     outline: 0.075rem dotted burlywood;
+}
+
+i {
+    color: inherit;
+    font-size: 0.75rem;
 }
 
 a {
@@ -234,10 +240,13 @@ main {
 
 .resetButton {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     top: 0.75rem;
     right: 0.75rem;
-    width: 1.75rem;
-    height: 1.75rem;
+    width: 1.5rem;
+    height: 1.5rem;
     padding: 0.125rem 0.35rem;
 }
 
