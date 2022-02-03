@@ -56,12 +56,20 @@ header {
 }
 
 body {
+    position: relative;
+}
+
+.backgroundImage {
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
     /* Background image credit Erol Ahmed @erol (https://unsplash.com/photos/IHL-Jbawvvo) */
     background-image: url(./Assets/erol-ahmed-IHL-Jbawvvo-unsplash.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
 }
 
 form {

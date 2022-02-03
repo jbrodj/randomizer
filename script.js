@@ -51,7 +51,7 @@ toggleForm.addEventListener('submit', submitToggleForm)
 function submitToggleForm(event) {
     event.preventDefault()
     toggleForm.classList.add('inactive')
-    toggleSubmit.classList.add('inactive')
+    toggleButton.classList.add('inactive')
     promptHeading.innerText = `Let's put players in a random order!`
     
     // Display form for number of players (numForm)
@@ -288,7 +288,7 @@ function formReset() {
     }
 
     // Array containing elements to be hidden
-    const toHide = [numForm, numInput, numButton, nameForm, nameButton, resultSection, resetButton]
+    const toHide = [numForm, numButton, nameForm, nameButton, resultSection, resetButton]
     // Add 'inactive' class to each element
     toHide.forEach(hideForms)
     function hideForms(element) {
