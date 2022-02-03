@@ -5,7 +5,7 @@ const toggleForm = document.getElementById('toggleForm')
 const toggleDisplay = document.getElementById('toggleDisplay')
 const toggleButton = document.getElementById('toggleSubmit')
 const promptHeading = document.getElementById('promptHeading')
-const defaultSelectRadio = document.getElementById('randomRadio')
+const defaultSelectRadio = document.getElementById('whiteElephant')
 
 // Elements from input form for gathering number of players
 const numForm = document.getElementById('numForm')
@@ -14,11 +14,13 @@ const numButton = document.getElementById('numSubmit')
 
 // Elements from input form for gathering player names
 const nameForm = document.getElementById('nameForm')
+const nameInputContainer = document.getElementById('nameInputContainer')
 const nameButton = document.getElementById('nameSubmit')
 
 // Elements for displaying final results
 const resultSection = document.getElementById('resultSection')
 
+// Element for resetting the program
 const resetButton = document.getElementById('resetButton')
 
 
@@ -47,14 +49,18 @@ function setToggleSelect(event) {
 // Listen for submit of radio toggle form (toggleForm)
 toggleForm.addEventListener('submit', submitToggleForm)
 
-// When submit clicked, hide toggle form, update heading text, check for which game is selected, and launch next step for that game
+// When submit clicked, move to next step. 
 function submitToggleForm(event) {
     event.preventDefault()
-    toggleForm.classList.add('inactive')
-    toggleButton.classList.add('inactive')
+
+    // Update prompt heading for current step
     promptHeading.innerText = `Let's put players in a random order!`
     
-    // Display form for number of players (numForm)
+    // Hide elements from the toggle form
+    toggleForm.classList.add('inactive')
+    toggleButton.classList.add('inactive')
+    
+    // Display form for number of players
     numForm.classList.remove('inactive')
     numButton.classList.remove('inactive')
 
@@ -69,35 +75,34 @@ function submitToggleForm(event) {
 // ================== MAIN PROGRAM SEQUENCE ====================
 
 // Variable to store input value for the number of players text field.
-let numPlayers = parseInt(numInput.value)
-
-// Listen for change on number of players input (numInput)
-numInput.addEventListener('change', assignNum)
-
-// Set value of numPlayers = integer input value
-function assignNum(event) {
-    numPlayers = parseInt(event.target.value)
-}
+let numPlayers
 
 // Declare arrays to store user data
 let numArray = []
 let nameArray = []
 
+// ===== USER CHOOSES WHICH GAME =====
 // Listen for submit event on number form. 
 numForm.addEventListener('submit', submitNumForm)
 
 // When form is submitted, send numPlayers value, clean up form elements, and call next function. 
 function submitNumForm(event) {
     event.preventDefault()
-    // Populate empty array with a number of items = the numPlayers value
+
+    // Reset number array value (in case app is run multiple times)
     numArray = []
+
+    // Assign user input value to variable storing number of players
+    numPlayers = numInput.value
+
+    // Populate empty array with a number of items = the numPlayers value
     for (let i = 1; i <= numPlayers; i++) {
         numArray.push(`Player${i}`)
     }
-
     // Hide number form
     numForm.classList.add('inactive')
     numButton.classList.add('inactive')
+
     // Display names form
     nameForm.classList.remove('inactive')
     nameButton.classList.remove('inactive')
@@ -106,8 +111,13 @@ function submitNumForm(event) {
     generateNamesForm()
 }
 
+// ===== USER ADDS NAME DATA =====
 // Generate a form with # inputs === integer selected in the number form:
 function generateNamesForm() {
+
+    // Clear generated child elements from the names input container.
+    clearChildren(nameInputContainer)
+
     // Update prompt heading for next step.
     document.querySelector('h2').innerText = `Let's gather all the names`;
 
@@ -117,7 +127,7 @@ function generateNamesForm() {
         string = element.toString()
         // Create & append LI. Add attributes for styling.
         const inputLi = document.createElement('li')
-        inputContainer2.appendChild(inputLi)
+        nameInputContainer.appendChild(inputLi)
         inputLi.setAttribute('class', 'altColorLi')
         // Create label elements and name using numArray to link each to corresponding input element
         const label = document.createElement('label')
@@ -136,24 +146,31 @@ function generateNamesForm() {
     })
 }
 
+// ===== STORE NAME DATA & MOVE ON TO GAME CHOSEN =====
 // Define array for storing name data from user inputs
 nouveauArray = []
+
 // Listen for second form submit click.
 nameForm.addEventListener('submit', submitNameForm)
+
 // When name form submits, call appropriate program function & store name values in new array. 
 function submitNameForm(event) {
     event.preventDefault()
-
-    // Array to store temporary name data
+    
+    // Reset temporary name data array (in case app is run muliple times)
     nameArray = []
+
     // Variable to store the input elements in the names form 
     eachName = document.getElementsByClassName('nameInput')
+
     // Populate array with elements
     nameArray.push(eachName)
+
     // Loop through the nameArray to populate a new array with the user data from the inputs. 
     for (i = 0; i < nameArray[0].length; i++) {
         nouveauArray.push(nameArray[0][i].value)
     }
+
     // Hide names input form.
     nameForm.classList.add('inactive')
     nameButton.classList.add('inactive')
@@ -179,15 +196,17 @@ function submitNameForm(event) {
 // =================== WHITE ELEPHANT PROGRAM ====================
 
 // Define final array to store randomized name order.
-const randomOrder = []
+let randomOrder = []
 
 // Function to randomize the order of the list of names
 function randomatron2000() {
+    // Reset random order
+    randomOrder = []
     // Loop to generate random number, add item at that index to randomOrder array, and remove it from array of names for each index in the array.
     while (nouveauArray.length > 0) {
-        rando = Math.floor(Math.random() * nouveauArray.length)
-        randomOrder.push(nouveauArray[rando])
-        nouveauArray.splice(rando, 1)
+        randomIndex = Math.floor(Math.random() * nouveauArray.length)
+        randomOrder.push(nouveauArray[randomIndex])
+        nouveauArray.splice(randomIndex, 1)
     }
     // Call the print function
     printResults()
@@ -195,6 +214,11 @@ function randomatron2000() {
 
 
 // =================== SECRET SANTA PROGRAM =======================
+
+function pairamatron2001() {
+    console.log('pairamatronnnnnn')
+    clearChildren(resultSection)
+}
 
 // Define final array to store the pairings
 // const allPlayers = []
@@ -244,20 +268,17 @@ function randomatron2000() {
 //     }
 
 
-function pairamatron2001() {
-    console.log('pairamatronnnnnn')
-}
-
-
-
-
-
 // =============== PRINTING RESULTS ==================
 
 // Send final results to the OL on the page, creating an li for each index in the randomized array.
 function printResults() {
+
+    // Clear generated child elements from the results section (start fresh if app runs multiple times)
+    clearChildren(resultSection)
+
     // Display the results section
     resultSection.classList.remove('inactive')
+
     // Create and append the list items for each index, adding class property for styling. 
     randomOrder.forEach(function(item) {
         const listItem = document.createElement('li')
@@ -268,19 +289,29 @@ function printResults() {
 }
 
 
-// ================= RESET FUNCTION ===================
+// =============== PARENT ELEMENT CLEANUP FUNCTION ================
+
+// Clear generated child elements from the parent given. So parent starts fresh if app runs multiple times. 
+function clearChildren(parentElement) {
+    while(parentElement.firstChild) {
+        parentElement.removeChild(parentElement.lastChild)
+    }
+}
+
+
+// =================== RESET FUNCTION =====================
 
 // Event Listener for reset button
 resetButton.addEventListener('click', formReset)
 
-// When button pressed, show initial page loadout.
+// When button pressed, show initial page loadout, remove generated elements and variable values.
 function formReset() {
-
     // Reset prompt h2 element text. 
     promptHeading.innerText = 'Which game are you playing?'
     
     // Array containing elements to be displayed
     const toReset = [toggleForm, toggleDisplay, toggleButton]
+
     // Remove 'inactive' class from each element
     toReset.forEach(resetToggleForm)
     function resetToggleForm(element) {
@@ -289,9 +320,21 @@ function formReset() {
 
     // Array containing elements to be hidden
     const toHide = [numForm, numButton, nameForm, nameButton, resultSection, resetButton]
+
     // Add 'inactive' class to each element
     toHide.forEach(hideForms)
     function hideForms(element) {
         element.classList.add('inactive')
     }
+
+    // Bring focus to user's previous selection in the game selection toggle form (using gameSelected variable).
+    document.getElementById(gameSelected).focus()
 }
+
+// Run reset function if escape key is pressed.
+window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        formReset()
+    }
+    
+})
