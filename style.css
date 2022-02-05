@@ -91,7 +91,7 @@ input {
     background-color: rgb(236, 225, 210);
     border-radius: 0.075rem;
     border: none;
-    transition: background 0.2s ease-in;
+    transition: background 0.15s ease-in;
 }
 
 input:focus {
@@ -101,6 +101,10 @@ input:focus {
 
 input[type=radio] {
     transition: none;
+}
+
+input[type=number] {
+    text-align: center;
 }
 
 ul {
@@ -136,7 +140,7 @@ button {
     border: 0.15rem solid rgb(124, 40, 40);
     border-radius: 0.15rem;
     font-family: inherit;
-    transition: border 0.2s ease-in;
+    transition: border 0.15s ease-in;
 }
 
 button:hover {
@@ -155,11 +159,11 @@ i {
 a {
     color: inherit;
     border: 0.075rem dotted transparent;
-    transition: color 0.2s ease-in;
+    transition: color 0.15s ease-in;
 }
 
 a:hover {
-    color: rgb(228, 122, 122);
+    color: rgb(212, 99, 99);
 }
 
 a:focus {
@@ -223,14 +227,101 @@ main {
     justify-content: space-around;
 }
 
+fieldset {
+    /* border: none; */
+    padding: 0;
+}
+
 .toggleForm {
-    margin-top: 0.4rem;
+    width: 100%;
 }
 
 .radioContainer {
-    width: 5rem;
+    width: 100%;
+    width: 26rem;
     display: flex;
     justify-content: space-evenly;
+}
+
+input[type='radio'] {
+    opacity: 0;
+}
+
+label:nth-of-type(2) {
+    opacity: 0;
+}
+
+input[type='radio'] + label {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: -1.5rem;
+}
+
+input[type='radio'] + label::before {
+    content: ' ';
+    position: absolute;
+    display: inline-block;
+    left: -0.35rem;
+    top: -0.45rem;
+    width: 7.5rem;
+    height: 2.25rem;
+    /* background-color: rgba(141, 168, 141, 0.3); */
+    border-radius: 0.125rem;
+    /* border: 0.125rem solid rgba(141, 168, 141, 0.5); */
+    transition: transform 0.2s ease;
+    
+}
+
+input[type='radio'] + label::after {
+    content: ' ';
+    position: absolute;
+    display: inline-block;
+    left: -0.35rem;
+    top: -0.45rem;
+    width: 7.5rem;
+    height: 2.25rem;
+    background-color: rgba(141, 168, 141, 0.3);
+    border-radius: 0.125rem;
+    border: 0.125rem solid rgba(141, 168, 141, 0.5);
+    transition: transform 0.2s ease;
+}
+
+.radioWrapper:nth-of-type(2) label {
+    margin-left: -5rem;
+}
+
+.radioWrapper:nth-of-type(2) label::after {
+    left: -1rem;
+}
+
+.radioWrapper:nth-of-type(2) label::before {
+    left: -1rem;
+}
+
+input[type='radio']:checked + label::before {
+    transform: scale(107.5%);
+}
+
+input[type='radio']:checked + label {
+        transform: scale(107.5%);
+}
+
+input[type='radio']:checked + label::after {
+    /* background-color: white; */
+    border: 0.125rem solid rgb(124, 40, 40);
+    transform: scale(107.5%);
+}
+
+input[type='radio']:focus + label::before {
+    /* box-shadow: 0 0px 8px red; */
+        outline: 0.075rem dotted burlywood;
+}
+
+input[type='radio']:hover + label:after {
+    /* box-shadow: 0 0px 8px red; */
+        /* outline: 0.075rem dotted pink; */
+    background-color: rgba(141, 168, 141, 0.5);
 }
 
 .radioContainer > li {
@@ -239,7 +330,7 @@ main {
 }
 
 .numInputContainer input {
-    width: 3rem;
+    width: 2.8rem;
 }
 
 .altColorLi > input {
