@@ -2,7 +2,7 @@
 
 // Elements from initial input form to select which game is being played
 const toggleForm = document.getElementById('toggleForm')
-const toggleDisplay = document.getElementById('toggleDisplay')
+// const toggleDisplay = document.getElementById('toggleDisplay')
 const toggleButton = document.getElementById('toggleSubmit')
 const promptHeading = document.getElementById('promptHeading')
 const defaultSelectRadio = document.getElementById('whiteElephant')
@@ -27,11 +27,8 @@ const resetButton = document.getElementById('resetButton')
 
 // ================= USER CHOOSES WHICH GAME THEY'RE PLAYING =====================
 
-// When page loads or refreshes, reset html element to default selection - prevents radio selection display from sticking on refresh.
-defaultSelectRadio.checked=true
-
 // Variable to store input value for the selected game
-let gameSelected = 'whiteElephant'
+let gameSelected = ''
 
 // Listen for change on the game selection form
 toggleForm.addEventListener('change', setToggleSelect)
@@ -39,11 +36,12 @@ toggleForm.addEventListener('change', setToggleSelect)
 // Set the gameSelect variable to user selection
 function setToggleSelect(event) {
     gameSelected = event.target.value
-    if (gameSelected === 'secretSanta') {
-        toggleDisplay.textContent = 'Secret Santa'
-    } else {
-        toggleDisplay.textContent = 'White Elephant'
-    }
+    // ===== might still use this for contextual info about each game ====
+    // if (gameSelected === 'secretSanta') {
+    //     toggleDisplay.textContent = 'Secret Santa'
+    // } else {
+    //     toggleDisplay.textContent = 'White Elephant'
+    // }
 }
 
 // Listen for submit of radio toggle form (toggleForm)
@@ -310,7 +308,7 @@ function formReset() {
     promptHeading.innerText = 'Which game are you playing?'
     
     // Array containing elements to be displayed
-    const toReset = [toggleForm, toggleDisplay, toggleButton]
+    const toReset = [toggleForm, toggleButton]
 
     // Remove 'inactive' class from each element
     toReset.forEach(resetToggleForm)

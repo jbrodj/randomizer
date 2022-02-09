@@ -26,17 +26,21 @@
         <section class="wrapper mainWrapper">
             <h2 id="promptHeading">Which game are you playing?</h2>
                 <form class="toggleForm" id="toggleForm">
-                    <ul class="inputContainer radioContainer">
-                        <li>
-                            <label for="whiteElephant" class="sr-only">Randomizer</label>
-                            <input type="radio" id="whiteElephant" name="toggleForm" value="whiteElephant" checked autofocus>
-                        </li>
-                        <li>
-                            <label for="secretSanta" class="sr-only">Secret Santa</label>
-                            <input type="radio" id="secretSanta" name="toggleForm" value="secretSanta">
-                        </li>
-                    </ul>
-                    <p id="toggleDisplay">White Elephant</p>
+                    <fieldset>
+                        <legend class="sr-only">Choose a game</legend>
+                        <ul class="inputContainer radioContainer">
+                            <li class="radioWrapper">
+                                <input type="radio" id="whiteElephant" name="toggleForm" value="whiteElephant" autofocus>
+                                <label for="whiteElephant" class="radioLabel">White Elephant</label>
+                            </li>
+                            <li class="radioWrapper">
+                                <input type="radio" id="secretSanta" name="toggleForm" value="secretSanta">
+                                <label for="secretSanta" class="radioLabel">Secret Santa</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <!-- <p id="toggleDisplay">White Elephant</p> -->
+                    <!-- Might still use this toggle display to add contextual info about each game -->
                 </form>
                 <button type="submit" form="toggleForm" id="toggleSubmit">Go!</button>
                 <form class="numForm inactive" id="numForm">
