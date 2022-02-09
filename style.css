@@ -20,6 +20,11 @@ li {
     list-style: none;
 }
 
+fieldset {
+    border: none;
+    padding: 0;
+}
+
 
 /* ========= TYPOGRAPHY ========== */
 
@@ -227,10 +232,8 @@ main {
     justify-content: space-around;
 }
 
-fieldset {
-    border: none;
-    padding: 0;
-}
+
+/* ==== CUSTOM RADIO BUTTONS STYLES SUBSECTION ==== */
 
 .toggleForm {
     width: 100%;
@@ -254,7 +257,7 @@ label:nth-of-type(2) {
     opacity: 0;
 }
 
-input[type='radio'] + label {
+input[type='radio'] + label { /* label is basis for the styled elements for custom radio*/
     position: relative;
     display: inline-block;
     cursor: pointer;
@@ -263,20 +266,19 @@ input[type='radio'] + label {
     margin: 0;
 }
 
-input[type='radio'] + label::before {
+input[type='radio'] + label::before { /* before represents the element for focusable state outline*/
     content: ' ';
     position: absolute;
     display: inline-block;
     left: 0;
     top: 0;
     width: 100%;
-    height: 2.25rem;
     height: 100%;
     border-radius: 0.125rem;
     transition: transform 0.2s ease;
     }
 
-input[type='radio'] + label::after {
+input[type='radio'] + label::after { /* after represents the element for the visible button appearance*/
     content: ' ';
     position: absolute;
     display: inline-block;
@@ -322,6 +324,9 @@ input[type='radio']:hover + label:after {
     margin: 0;
     padding-top: 0;
 }
+
+/* ==== ==== */
+
 
 .numInputContainer input {
     width: 2.8rem;
