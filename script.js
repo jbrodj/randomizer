@@ -27,9 +27,6 @@ const resetButton = document.getElementById('resetButton')
 
 // ================= USER CHOOSES WHICH GAME THEY'RE PLAYING =====================
 
-// When page loads or refreshes, reset html element to default selection - prevents radio selection display from sticking on refresh.
-// defaultSelectRadio.checked=true
-
 // Variable to store input value for the selected game
 let gameSelected = ''
 
@@ -39,6 +36,7 @@ toggleForm.addEventListener('change', setToggleSelect)
 // Set the gameSelect variable to user selection
 function setToggleSelect(event) {
     gameSelected = event.target.value
+    // ===== might still use this for contextual info about each game ====
     // if (gameSelected === 'secretSanta') {
     //     toggleDisplay.textContent = 'Secret Santa'
     // } else {

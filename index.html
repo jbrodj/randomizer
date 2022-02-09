@@ -26,20 +26,8 @@
         <section class="wrapper mainWrapper">
             <h2 id="promptHeading">Which game are you playing?</h2>
                 <form class="toggleForm" id="toggleForm">
-                    <!-- <div class="selectionDiv">
-                        <ul class="inputContainer radioContainer">
-                            <li class="selectionBox whiteElephant">
-                                <label for="whiteElephant" class="sr-only">White Elephant</label>
-                                <input type="radio" id="whiteElephant" name="toggleForm" value="whiteElephant" checked autofocus>
-                            </li>
-                            <li class="selectionBox secretSanta">
-                                <label for="secretSanta" class="sr-only">Secret Santa</label>
-                                <input type="radio" id="secretSanta" name="toggleForm" value="secretSanta">
-                            </li>
-                        </ul>
-                    </div> -->
-                    <!-- <fieldset> -->
-                        <!-- <legend class="sr-only">Choose a game</legend> -->
+                    <fieldset>
+                        <legend class="sr-only">Choose a game</legend>
                         <ul class="inputContainer radioContainer">
                             <li class="radioWrapper">
                                 <input type="radio" id="whiteElephant" name="toggleForm" value="whiteElephant" autofocus>
@@ -50,8 +38,9 @@
                                 <label for="secretSanta" class="radioLabel">Secret Santa</label>
                             </li>
                         </ul>
-                    <!-- </fieldset> -->
+                    </fieldset>
                     <!-- <p id="toggleDisplay">White Elephant</p> -->
+                    <!-- Might still use this toggle display to add contextual info about each game -->
                 </form>
                 <button type="submit" form="toggleForm" id="toggleSubmit">Go!</button>
                 <form class="numForm inactive" id="numForm">
