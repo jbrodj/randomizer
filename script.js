@@ -213,59 +213,78 @@ function randomatron2000() {
 
 // =================== SECRET SANTA PROGRAM =======================
 
-function pairamatron2001() {
-    console.log('pairamatronnnnnn')
-    clearChildren(resultSection)
-}
 
 // Define final array to store the pairings
-// const allPlayers = []
-// let newBuddy = []
+let allPlayers = []
+let pairedPlayers = []
 
-// allPlayers.push('Steve', 'Mary', 'Ron', 'Dawn', 'Shevon', 'Cmon')
+//                  TODO =============
+    // Integrate pairing function with names list array to let the program run with the user's names instead of hardcoded names. 
+allPlayers.push('Steve', 'Mary', 'Ron', 'Dawn', 'Shevon', 'Cmon')
 
-// let currentPlayer;
-// let otherPlayers = [];
-// let takenPlayers = []
-// let randomIndex;
+let currentPlayer;
 
-// function numGenerator() {
-//     randomIndex = Math.floor(Math.random() * (allPlayers.length - 1))
-//     // console.log(randomIndex)
+let randomIndex;
+
+//=== Random number generator ===
+function numGenerator() {
+    randomIndex = Math.floor(Math.random() * (allPlayers.length))
+    // console.log(randomIndex)
+}
+
+function pairamatron2001() {
+    // allPlayers = nameArray
+    console.log(allPlayers)
+    // console.log('pairamatronnnnnn')
+    // clearChildren(resultSection)
+
+    // Reset paired players array
+    pairedPlayers = []
+    // === Loop over all players and find a random non-self match ===
+    for (let p = 0; p < allPlayers.length; p++) {
+        // Find a random number to generate radom choice of player
+        // Set the random index to an arbitrary non-index value to check for at the start of the loop
+        randomIndex = -1;
+        let runs = 0;
+        
+        // While randomIndex has that arbitrary value (ie. the loop hasn't run yet), and while the random index is the same as the index of the current player (so a player can't be assigned to themselves), and while the indexOf(randomIndex) is present in the pairedPlayers array (ie. that person has already been paired), we want the random number generator to run and assign a value.
+        while (randomIndex == -1 || randomIndex == p || pairedPlayers.indexOf(allPlayers[randomIndex]) != -1) {
+            numGenerator()
+            runs++;
+            console.log(runs)
+            // If the program is running too many times, it's because the last value in the names list is the only available unpaired player. Start over. 
+            if (runs > allPlayers.length) {
+                pairamatron2001()
+                return;
+            }
+            
+            // // If the last player in the loop is the only remaining unpaired player (ie. is paired with itself), restart the function. 
+            // if (p === allPlayers[allPlayers.length] && p === allPlayers[randomIndex]) {
+            //     console.log(p, allPlayers.randomIndex)
+            //     console.log('duplicate at end')
+            //     pairamatron2001()
+            //     return
+            // }
+        }
+        
+        pairedPlayers.push(allPlayers[randomIndex])
+        
+        // Set the current player in the loop
+        currentPlayer = allPlayers[p]
+        console.log(currentPlayer, allPlayers[randomIndex])
+    }
+    console.log('finished')
+}
+
+// const calculator = document.getElementById('calculate')
+// document.addEventListener('click', calculate)
+
+// function calculate() {
+    
+//     pairamatron2001()
 // }
-
-// for (let p = 0; p < allPlayers.length; p++) {
-//     // Find a random number to generate radom choice of player
-//     numGenerator()
-
-//     let possiblePairs = []
-
-//     // Set the current player in the loop
-//     currentPlayer = allPlayers[p]
-//     // console.log(currentPlayer)
-
-//     // Remove the player from their own list of possible matches
-//     otherPlayers = allPlayers.filter(player => {
-//         return player != currentPlayer
-//     })
-//     // console.log(otherPlayers)
-
-//     if (takenPlayers.length > 0) {
-//         let takenPlayerIndex = otherPlayers.indexOf(otherPlayers[randomIndex])
-//         let takenPlayer = otherPlayers[takenPlayerIndex]
-//         // console.log(takenPlayer)
-//         for (n = 0; n < takenPlayers.length; n++)
-//         possiblePairs = otherPlayers.filter(player => {
-//             return player != takenPlayer
-//         })
-//         console.log(possiblePairs)
-//     }
-
-//     takenPlayers.push(otherPlayers[randomIndex])
-//     console.log(takenPlayers)
-//     }
-
-
+    
+console.log(pairedPlayers)
 // =============== PRINTING RESULTS ==================
 
 // Send final results to the OL on the page, creating an li for each index in the randomized array.
@@ -325,8 +344,18 @@ function formReset() {
         element.classList.add('inactive')
     }
 
+
+    //               TODO ====================
+        // Reassign the gameselected to the last selected value when the form resets - the value is null until there is a change on the radio form. 
+    //               TODO
+    console.log(gameSelected)
+    setTimeout(refocus(), 5000)
+}
+
+function refocus() {
     // Bring focus to user's previous selection in the game selection toggle form (using gameSelected variable).
-    document.getElementById(gameSelected).focus()
+        console.log(gameSelected)
+        document.getElementById(gameSelected).focus()
 }
 
 // Run reset function if escape key is pressed.

@@ -332,6 +332,7 @@ input[type='radio']:hover + label:after {
 
 .numInputContainer input {
     width: 2.8rem;
+    position: relative; /* Relative for styled before/after pseudoelements*/
 }
 
 .altColorLi > input {
@@ -439,7 +440,7 @@ footer {
     width: 100%;
 }
 
-/* Change the checked behaviour to not scale in the x-direction */
+/* Change the checked behaviour to not scale in the x-direction for mobile */
 input[type='radio']:checked + label {
         transform: scale(100%);
 }
