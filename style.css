@@ -291,6 +291,7 @@ input[type='radio'] + label::after { /* after represents the element for the vis
     border-radius: 0.125rem;
     border: 0.125rem solid rgba(141, 168, 141, 0.5);
     transition: transform 0.2s ease;
+    transition: transform 0.1s ease, background-color 0.2s ease;
 }
 
 /* Nudge the labels over slightly to compensate for space taken up by the invisible un-styled radio elements. */
