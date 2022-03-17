@@ -31,13 +31,21 @@ const resetButton = document.getElementById('resetButton')
 
 let gameSelected = ''
 
+// Descriptive text for each game.
+const secretDesc = 'Each player is secretly assigned another player randomly and gives a gift to that player.';
+const elephantDesc = 'Players choose gifts in order - taking one from the pile or stealing from another player.';
+
+// toggleDisplay.textContent = ' '
+
 // Check status of 'checked' on the toggle form inputs to set gameSelected to previously selected value, and set focus to that element - prevents an error when app is restarted by refresh instead of using the restart button.
 if (toggleForm[1].checked === true) {
-    gameSelected = 'whiteElephant'
-    toggleForm[1].focus()
+    gameSelected = 'whiteElephant';
+    toggleForm[1].focus();
+    toggleDisplay.textContent = elephantDesc;
 } else if (toggleForm[2].checked === true) {
     gameSelected = 'secretSanta'
     toggleForm[2].focus()
+    toggleDisplay.textContent = secretDesc;
 }
 
 // Listen for change on the game selection form
@@ -48,11 +56,11 @@ function setToggleSelect(event) {
     gameSelected = event.target.value
     allPlayers = []
     // ===== might still use this for contextual info about each game ====
-    // if (gameSelected === 'secretSanta') {
-    //     toggleDisplay.textContent = 'Secret Santa'
-    // } else {
-    //     toggleDisplay.textContent = 'White Elephant'
-    // }
+    if (gameSelected === 'secretSanta') {
+        toggleDisplay.textContent = secretDesc;
+    } else {
+        toggleDisplay.textContent = elephantDesc;
+    }
 }
 
 // Listen for submit of radio toggle form (toggleForm)
@@ -149,7 +157,6 @@ function generateNamesForm() {
         input.setAttribute('class', 'nameInput')
         input.setAttribute('id', string)
         input.setAttribute('required', true)
-        // input.setAttribute('required', 'required')
         inputLi.appendChild(input)
         // Send Focus to first input
         document.getElementById('Player1').focus()

@@ -273,7 +273,7 @@ main {
 
 .mainWrapper {
     min-height: 12.5rem;
-    height: auto;
+    /* height: auto; */
     padding: 2rem 1.5rem;
     position: relative;
     flex-direction: column;
@@ -294,6 +294,11 @@ main {
     justify-content: space-evenly;
     justify-content: center;
     align-items: center;
+}
+
+.toggleForm p {
+    margin-top: 1rem;
+    padding: 0 0.5rem;
 }
 
 input[type='radio'] {
