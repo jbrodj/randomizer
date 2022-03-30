@@ -47,12 +47,6 @@ toggleForm.addEventListener('change', setToggleSelect)
 function setToggleSelect(event) {
     gameSelected = event.target.value
     allPlayers = []
-    // ===== might still use this for contextual info about each game ====
-    // if (gameSelected === 'secretSanta') {
-    //     toggleDisplay.textContent = 'Secret Santa'
-    // } else {
-    //     toggleDisplay.textContent = 'White Elephant'
-    // }
 }
 
 // Listen for submit of radio toggle form (toggleForm)
